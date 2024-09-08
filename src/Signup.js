@@ -28,6 +28,7 @@ const Signup = (props) => {
         db.collection('users').doc(userCredential.user.uid).set({
             username: username,
             fName: fName,
+            email: email,
             lName: lName,
             interests: iValue.split(","),
             topics: subjects.split(","),
