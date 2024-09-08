@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Signup from "./Signup";
+import Login from "./Login";
+import Home from "./Home";
+import AboutUs from "./AboutUs";
+import { useState } from "react";
+import Profile from "./Profile";
+import Sidebar from "./Sidebar";
+import ChatBot from "./ChatBot";
+import Questions from "./Questions";
+import BuddySearch from "./BuddySearch";
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${signedIn ? `flex flex-row` : `flex flex-col`}`}>
+      {signedIn && <Sidebar />}
+      <Routes>
+        <Route path ="/signup" element= {<Signup/>}/>
+        <Route path ="/login" element= {<Login setSignedIn={setSignedIn}/>}/>
+        <Route path = "/AboutUs" element= {<AboutUs/>}/>
+        
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chatbot" element={<ChatBot />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/BuddySearch" element={<BuddySearch/>}/>
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export default App
